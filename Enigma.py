@@ -16,13 +16,16 @@ class Rotor (object):
         
     def rotate(self):
         count = 0
-        hold = self.wiring["A"]
+        rotating = list(self.wiring.keys())
         while count < 28:
-            plug = self.alphabet[count]
-            plug2 = self.alphabet[count + 1]
+            plug = rotating[count]
+            if count == 27:
+                plug2 = rotating[-1]
+            else:
+                plug2 = rotating[count + 1]
             self.wiring[plug] = self.wiring[plug2]
             count += 1
-        self.wiring["."] = hold
+
         
     def setupWiring(self, wires):
         count = 0
@@ -114,7 +117,7 @@ class Enigma (object):
                     self.rotor3.rotate()
                     self.rotor5.rotate()
                 else:
-                    self.rotor2.roate()
+                    self.rotor2.rotate()
                     self.rotor4.rotate()
                 count2 += 1
                 count += 1
