@@ -70,7 +70,6 @@ class Enigma (object):
             rotors.append(rotor)
         return rotors
             
-                
     def setupPlugboard(self, inchar, outchar):
         self.plugboard[inchar] = outchar
         
@@ -79,16 +78,17 @@ class Enigma (object):
         char = ""
         count = 0
         count2 = 0
-        change = input("How many letters do you want to change with the plugboard: ")
+        change = int(input("How many letters do you want to change with the plugboard: "))
         while count < change:
             inchar = input("Enter the letter you want changed: ")
             outchar = input("Enter the letter you want it to become: ")
             self.setupPlugboard(inchar, outchar)
             count += 1
         count = 0
-        rotors = self.setupRotors()
+        self.setupRotors()
         for c in inmess:
-            char = self.plugboard[c]
+            if len(self.plugboard) > 0:
+                char = self.plugboard[c]
             char = self.rotor1.switch(char)
             self.rotor1.rotate()
             char = self.rotor2.switch(char)
