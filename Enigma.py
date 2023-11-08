@@ -51,7 +51,7 @@ class Rotor (object):
 class Enigma (object):
     def __init__(self):
         self.rotor1 = Rotor((("A", "."), (".", "A"), ("B", " "), (" ", "B"), ("C", "Z"), ("Z", "C"), ("D", "Y"), ("Y", "D"), ("E", "X"), ("X", "E"), ("F", "W"), ("W", "F"), ("G", "V"), ("V", "G"), ("H", "U"), ("U", "H"), ("I", "T"), ("T", "I"), ("J", "S"), ("S", "J"), ("K", "R"), ("R", "K"), ("L" ,"Q"), ("Q", "L"), ("M", "P"), ("P", "M"), ("N", "O"), ("O", "N")))
-        self.rotor2 = Rotor((("A", "B"), ("B", "A"), ("C", "D"), ("D", "C"), ("E", "F"), ("F", "E"), ("G", "H"), ("H", "G"), ("I", "J"), ("J", "I"), ("K", "L"), ("L", "K"), ("M", "N"), ("N", "M"), ("O", "P"), ("P", "O"), ("Q", "R"), ("R", "Q"), ("S", "T"), ("T", "S"), ("U", "V"), ("V", "U"), ("W", "X"), ("X", "W"), ("Y", "Z"), ("Z", "Y"), (" ", "."), (" ", ".")))
+        self.rotor2 = Rotor((("A", "B"), ("B", "A"), ("C", "D"), ("D", "C"), ("E", "F"), ("F", "E"), ("G", "H"), ("H", "G"), ("I", "J"), ("J", "I"), ("K", "L"), ("L", "K"), ("M", "N"), ("N", "M"), ("O", "P"), ("P", "O"), ("Q", "R"), ("R", "Q"), ("S", "T"), ("T", "S"), ("U", "V"), ("V", "U"), ("W", "X"), ("X", "W"), ("Y", "Z"), ("Z", "Y"), (" ", "."), (".", " ")))
         self.rotor3 = Rotor((("A", "C"), ("C", "A"), ("B", "D"), ("D", "B"), ("E", "G"), ("G", "E"), ("F", "H"), ("H", "F"), ("I", "K"), ("K", "I"), ("J", "L"), ("L", "J"), ("M", "O"), ("O", "M"), ("N", "P"), ("P", "N"), ("Q", "S"), ("S", "Q"), ("R", "T"), ("T", "R"), ("U", "W"), ("W", "U"), ("V", "X"), ("X", "V"), ("Y", " "), (" ", "Y"), ("Z", "."), (".", "Z")))
         self.rotor4 = Rotor((("A", "D"), ("D", "A"), ("B", "E"), ("E", "B"), ("C", "F"), ("F", "C"), ("G", "I"), ("I", "G"), ("H", "J"), ("J", "H"), ("K", "M"), ("M", "K"), ("L", "N"), ("N", "L"), ("O", "Q"), ("Q", "O"), ("P", "R"), ("R", "P"), ("S", "U"), ("U", "S"), ("T", "V"), ("V", "T"), ("W", "Y"), ("Y", "W"), ("X", "."), (".", "X"), ("Z", " "), (" ", "Z")))
         self.rotor5 = Rotor((("A", "Q"), ("Q", "A"), ("B", "Z"), ("Z", "B"), ("C", "."), (".", "C"), ("D", "X"), ("X", "D"), ("E", "M"), ("M", "E"), ("F", "Y"), ("Y", "F"), ("G", "N"), ("N", "G"), ("H", " "), (" ", "H"), ("I", "T"), ("T", "I"), ("J", "O"), ("O", "J"), ("K", "R"), ("R", "K"), ("L", "S"), ("S", "L"), ("P", "U"), ("U", "P"), ("W", "V"), ("V", "W")))
@@ -66,7 +66,7 @@ class Enigma (object):
         rotors = []
         print("Select five rotors")
         while len(rotors) < 5:
-            rotor = input("Select a rotor you want to use. There are 10 rotors. Enter a number between 1 and 10.")
+            rotor = input("Select a rotor you want to use. There are 10 rotors. Enter a number between 1 and 10: ")
             rotors.append(rotor)
         return rotors
             
@@ -87,6 +87,7 @@ class Enigma (object):
         count = 0
         self.setupRotors()
         for c in inmess:
+            char = c
             if len(self.plugboard) > 0:
                 char = self.plugboard[c]
             char = self.rotor1.switch(char)
@@ -121,11 +122,11 @@ class Enigma (object):
                     self.rotor4.rotate()
                 count2 += 1
                 count += 1
-        self.rotor1.reset()
-        self.rotor2.reset()
-        self.rotor3.reset()
-        self.rotor4.reset()
-        self.rotor5.reset()
+        #self.rotor1.reset()
+        #self.rotor2.reset()
+        #self.rotor3.reset()
+        #self.rotor4.reset()
+        #self.rotor5.reset()
         return outmes
         
 machine = Enigma()
