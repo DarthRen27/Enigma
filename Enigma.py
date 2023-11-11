@@ -47,6 +47,7 @@ class Rotor (object):
         count = 0
         while count < 28:
             self.wiring[self.alphabet[count]] = self.originalWiring[self.alphabet[count]]
+            count += 1
         
 class Enigma (object):
     def __init__(self):
@@ -122,11 +123,11 @@ class Enigma (object):
                     self.rotor4.rotate()
                 count2 += 1
                 count += 1
-        #self.rotor1.reset()
-        #self.rotor2.reset()
-        #self.rotor3.reset()
-        #self.rotor4.reset()
-        #self.rotor5.reset()
+        self.rotor1.reset()
+        self.rotor2.reset()
+        self.rotor3.reset()
+        self.rotor4.reset()
+        self.rotor5.reset()
         return outmes
         
 machine = Enigma()
