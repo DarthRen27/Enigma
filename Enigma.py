@@ -15,6 +15,7 @@ class Rotor (object):
         self.setupWiring(wires)
         
     def rotate(self):
+        #Perform the rotation of the rotors
         count = 0
         rotating = list(self.wiring.keys())
         while count < 28:
@@ -28,6 +29,7 @@ class Rotor (object):
 
         
     def setupWiring(self, wires):
+        #Insert the pairs into the rotors
         count = 0
         insert = []
         while count < 28:
@@ -40,6 +42,7 @@ class Rotor (object):
             count += 1
             
     def switch(self, inlet):
+        #Swap the input letter with it's pair in the rotor
         outlet = self.wiring[inlet]
         return outlet
     
@@ -64,6 +67,7 @@ class Enigma (object):
         self.plugboard = {}
         
     def setupRotors(self):
+        #Allow user to choose rotors
         rotors = []
         print("Select five rotors")
         while len(rotors) < 5:
@@ -72,6 +76,7 @@ class Enigma (object):
         return rotors
             
     def setupPlugboard(self, inchar, outchar):
+        #Allow user to change select specific characters
         self.plugboard[inchar] = outchar
         
     def code(self, inmess):
